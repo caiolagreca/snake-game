@@ -48,7 +48,7 @@ function iniciarJogo() {
     for (i=1; i<cobra.length; i++) {
         if (cobra[0].x == cobra[i].x && cobra[0].y == cobra[i].y) {
             clearInterval(jogo);
-            document.body.innerHTML = `<h1>Game Over!</h1>`
+            document.body.innerHTML = `<h1 class='game-over'>Game Over!</h1>`
         }
     }
 

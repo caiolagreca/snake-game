@@ -1,0 +1,14 @@
+body{
+    height: 95vh;
+    width: 95;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(0, 53, 0);
+}
+
+.game-over{
+    color: darkred;
+    text-align: center;
+}
