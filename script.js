@@ -40,10 +40,17 @@ function atualiza(evento) {
 }
 
 function iniciarJogo() {
-    if(cobra[0].x > 16 * box && direcao == 'direita') cobra[0].x = 0;
-    if(cobra[0].x < 0 && direcao == 'esquerda') cobra[0].x = 16 * box;
-    if(cobra[0].y > 16 * box && direcao == 'baixo') cobra[0].y = 0;
-    if(cobra[0].y < 0 && direcao == 'cima') cobra[0].y = 16 * box;
+    if(cobra[0].x > 15 * box && direcao == 'direita') cobra[0].x = 0;
+    if(cobra[0].x < 0 && direcao == 'esquerda') cobra[0].x = 15 * box;
+    if(cobra[0].y > 15 * box && direcao == 'baixo') cobra[0].y = 0;
+    if(cobra[0].y < 0 && direcao == 'cima') cobra[0].y = 15 * box;
+
+    for (i=1; i<cobra.length; i++) {
+        if (cobra[0].x == cobra[i].x && cobra[0].y == cobra[i].y) {
+            clearInterval(jogo);
+            document.body.innerHTML = `<h1>Game Over!</h1>`
+        }
+    }
 
     criarBackground();
     criarCobra();
@@ -57,7 +64,13 @@ function iniciarJogo() {
     if (direcao == 'cima') cobraY -= box;
     if (direcao == 'baixo') cobraY += box;
 
-    cobra.pop();
+    if(cobraX != comida.x || cobraY != comida.y) {
+        cobra.pop();
+    } else {
+        comida.x = Math.floor(Math.random() * 15 + 1) * box;
+        comida.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
+
 
     let novaCabeca = {
         x: cobraX,
