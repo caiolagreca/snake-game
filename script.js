@@ -20,7 +20,21 @@ function criarCobra() {
     }
 }
 
+document.addEventListener('keydown', atualiza);
+
+function atualiza(evento) {
+    if(evento.keyCode == 37 && direcao != 'direita') direcao = 'esquerda';
+    if(evento.keyCode == 38 && direcao != 'baixo') direcao = 'cima';
+    if(evento.keyCode == 39 && direcao != 'esquerda') direcao = 'direita';
+    if(evento.keyCode == 40 && direcao != 'cima') direcao = 'baixo';
+}
+
 function iniciarJogo() {
+    if(cobra[0].x > 16 * box && direcao == 'direita') cobra[0].x = 0;
+    if(cobra[0].x < 0 && direcao == 'esquerda') cobra[0].x = 16 * box;
+    if(cobra[0].y > 16 * box && direcao == 'baixo') cobra[0].y = 0;
+    if(cobra[0].y < 0 && direcao == 'cima') cobra[0].y = 16 * box;
+
     criarBackground();
     criarCobra();
 
